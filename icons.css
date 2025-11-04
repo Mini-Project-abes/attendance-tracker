@@ -1,0 +1,50 @@
+/* Local Icons - Unicode alternatives to Font Awesome */
+.icon {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+}
+
+/* .icon-calendar-check::before { content: "📅"; } */
+.icon-user::before { content: "👤"; }
+/* .icon-edit::before { content: "✏️"; } */
+.icon-chevron-left::before { content: "◀"; }
+.icon-chevron-right::before { content: "▶"; }
+.icon-download::before { content: "⬇️"; }
+.icon-upload::before { content: "⬆️"; }
+.icon-cog::before { content: "⚙️"; }
+.icon-trash::before { content: "🗑️"; }
+.icon-info-circle::before { content: "ℹ️"; }
+.icon-times::before { content: "✕"; }
+.icon-moon::before { content: "🌙"; }
+.icon-sun::before { content: "☀️"; }
+.icon-palette::before { content: "🎨"; }
+.icon-leaf::before { content: "🍃"; }
+.icon-fire::before { content: "🔥"; }
+.icon-ocean::before { content: "🌊"; }
+.icon-purple::before { content: "💜"; }
+.icon-orange::before { content: "🍊"; }
+.icon-pink::before { content: "🌸"; }
+.icon-gold::before { content: "🌟"; }
+.icon-silver::before { content: "⚪"; }
+.icon-coffee::before { content: "☕"; }
+.icon-forest::before { content: "🌲"; }
+.icon-sunset::before { content: "🌅"; }
+.icon-night::before { content: "🌃"; }
+.icon-rainbow::before { content: "🌈"; }
+.icon-galaxy::before { content: "🌌"; }
+.icon-earth::before { content: "🌍"; }
+.icon-space::before { content: "🚀"; }
+.icon-crystal::before { content: "💎"; }
+.icon-aurora::before { content: "✨"; }
+.icon-mountain::before { content: "🏔️"; }
+.icon-desert::before { content: "🏜️"; }
+.icon-tropical::before { content: "🏝️"; }
+.icon-arctic::before { content: "❄️"; }
+.icon-autumn::before { content: "🍂"; }
+.icon-spring::before { content: "🌱"; }
+.icon-summer::before { content: "☀️"; }
+.icon-winter::before { content: "❄️"; } 
