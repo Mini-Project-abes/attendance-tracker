@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance Tracker</title>
+    <link rel="stylesheet" href="fonts/fonts.css" />
+    <link rel="stylesheet" href="fonts/icons.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-top">
+          <h1><i class="icon icon-calendar-check"></i> Attendance Tracker</h1>
+          <div class="profile-chip" id="profileChip">
+            <i class="icon icon-user"></i>
+            <span id="userName">Student Name</span>
+            <i class="icon icon-edit"></i>
+          </div>
+        </div>
+      </header>
+
+      <div class="info-block">
+        <div class="info-section stats-section">
+          <div class="stats">
+            <div class="stats-column">
+              <div class="stat-item">
+                <span class="stat-label">Total Days:</span>
+                <span id="totalDays">0</span>
+              </div>
+              <div class="stat-item present-days-stat">
+                <span class="stat-label">Present Days:</span>
+                <span id="presentDays">0</span>
+              </div>
+            </div>
+            <div class="stats-column">
+              <div class="stat-item absent-days-stat">
+                <span class="stat-label">Absent Days:</span>
+                <span id="absentDays">0</span>
+              </div>
+              <div class="stat-item attendance-percentage-stat">
+                <span class="stat-label">Attendance %:</span>
+                <span id="attendancePercentage">0%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-section center-section">
+          <div class="month-navigation">
+            <button id="prevMonth" class="nav-btn">
+              <i class="icon icon-chevron-left"></i>
+            </button>
+            <h2 id="currentMonth">January - June 2024</h2>
+            <button id="nextMonth" class="nav-btn">
+              <i class="icon icon-chevron-right"></i>
+            </button>
+          </div>
+
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-color absent"></div>
+              <span>Absent (0)</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color forenoon-present"></div>
+              <span>Forenoon (4)</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color afternoon-present"></div>
+              <span>Afternoon (3)</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color full-present"></div>
+              <span>Full Present (7)</span>
+            </div>
+          </div>
+
+          <div class="instructions">
+            <p>
+              <i class="icon icon-info-circle"></i> Click on any date to cycle
+              through attendance states. Your data is automatically saved
+              locally.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-section controls-section">
+          <div class="data-controls">
+            <button id="exportBtn" class="control-btn">
+              <i class="icon icon-download"></i> Export
+            </button>
+            <label for="importFile" class="control-btn">
+              <i class="icon icon-upload"></i> Import
+            </label>
+            <input
+              type="file"
+              id="importFile"
+              accept=".json"
+              style="display: none"
+            />
+            <button id="settingsBtn" class="control-btn">
+              <i class="icon icon-cog"></i> Settings
+            </button>
+            <button id="clearBtn" class="control-btn danger">
+              <i class="icon icon-trash"></i> Clear
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="six-months-container">
+        <div id="sixMonthsGrid" class="six-months-grid"></div>
+      </div>
+
+      <!-- Settings Modal -->
+      <div id="settingsModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3><i class="icon icon-cog"></i> Settings</h3>
+            <button id="closeSettings" class="close-btn">
+              <i class="icon icon-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="setting-group">
+              <label>Theme:</label>
+              <div class="theme-options">
+                <button class="theme-btn active" data-theme="dark">
+                  <i class="icon icon-moon"></i> Dark
+                </button>
+                <button class="theme-btn" data-theme="light">
+                  <i class="icon icon-sun"></i> Light
+                </button>
+                <button class="theme-btn" data-theme="blue">
+                  <i class="icon icon-palette"></i> Blue
+                </button>
+                <button class="theme-btn" data-theme="green">
+                  <i class="icon icon-leaf"></i> Green
+                </button>
+                <button class="theme-btn" data-theme="fire">
+                  <i class="icon icon-fire"></i> Fire
+                </button>
+                <button class="theme-btn" data-theme="ocean">
+                  <i class="icon icon-ocean"></i> Ocean
+                </button>
+                <button class="theme-btn" data-theme="purple">
+                  <i class="icon icon-purple"></i> Purple
+                </button>
+                <button class="theme-btn" data-theme="orange">
+                  <i class="icon icon-orange"></i> Orange
+                </button>
+                <button class="theme-btn" data-theme="pink">
+                  <i class="icon icon-pink"></i> Pink
+                </button>
+                <button class="theme-btn" data-theme="gold">
+                  <i class="icon icon-gold"></i> Gold
+                </button>
+                <button class="theme-btn" data-theme="coffee">
+                  <i class="icon icon-coffee"></i> Coffee
+                </button>
+                <button class="theme-btn" data-theme="forest">
+                  <i class="icon icon-forest"></i> Forest
+                </button>
+                <button class="theme-btn" data-theme="sunset">
+                  <i class="icon icon-sunset"></i> Sunset
+                </button>
+                <button class="theme-btn" data-theme="night">
+                  <i class="icon icon-night"></i> Night
+                </button>
+                <button class="theme-btn" data-theme="rainbow">
+                  <i class="icon icon-rainbow"></i> Rainbow
+                </button>
+                <button class="theme-btn" data-theme="galaxy">
+                  <i class="icon icon-galaxy"></i> Galaxy
+                </button>
+                <button class="theme-btn" data-theme="earth">
+                  <i class="icon icon-earth"></i> Earth
+                </button>
+                <button class="theme-btn" data-theme="space">
+                  <i class="icon icon-space"></i> Space
+                </button>
+                <button class="theme-btn" data-theme="crystal">
+                  <i class="icon icon-crystal"></i> Crystal
+                </button>
+                <button class="theme-btn" data-theme="aurora">
+                  <i class="icon icon-aurora"></i> Aurora
+                </button>
+                <button class="theme-btn" data-theme="mountain">
+                  <i class="icon icon-mountain"></i> Mountain
+                </button>
+                <button class="theme-btn" data-theme="desert">
+                  <i class="icon icon-desert"></i> Desert
+                </button>
+                <button class="theme-btn" data-theme="tropical">
+                  <i class="icon icon-tropical"></i> Tropical
+                </button>
+                <button class="theme-btn" data-theme="arctic">
+                  <i class="icon icon-arctic"></i> Arctic
+                </button>
+                <button class="theme-btn" data-theme="autumn">
+                  <i class="icon icon-autumn"></i> Autumn
+                </button>
+                <button class="theme-btn" data-theme="spring">
+                  <i class="icon icon-spring"></i> Spring
+                </button>
+                <button class="theme-btn" data-theme="summer">
+                  <i class="icon icon-summer"></i> Summer
+                </button>
+                <button class="theme-btn" data-theme="winter">
+                  <i class="icon icon-winter"></i> Winter
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
