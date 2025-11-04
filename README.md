@@ -29,7 +29,7 @@ Visual Feedback: Hover effects and smooth animations
 Color-Coded States: Easy-to-understand color scheme for different attendance states
 How to Use
 Getting Started
-Option 1: Visit the live application at https://shamil-xero.github.io/Attendance-Tracker/
+Option 1: Visit the live application at https://PranavD123.github.io/attendance-tracker/
 Option 2: Open index.html in any modern web browser
 The application will load with the current month displayed
 Your data is automatically saved locally in your browser
