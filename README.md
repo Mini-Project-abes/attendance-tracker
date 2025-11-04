@@ -8,7 +8,7 @@ Single-Click Interaction: Click any date to cycle through attendance states
 Month Navigation: Easy navigation between months with arrow buttons or keyboard arrows
 Today Highlighting: Current date is automatically highlighted for easy reference
 📊 Four Attendance States
-Full Present (7 classes) - Green: Attended all classes for the day
+Full Present (8 classes) - Green: Attended all classes for the day
 Forenoon Present (4 classes) - Orange: Attended only the forenoon session
 Afternoon Present (3 classes) - Blue: Attended only the afternoon session
 Absent (0 classes) - Red: Absent for the entire day
@@ -37,7 +37,7 @@ Recording Attendance
 Click on any date in the calendar to cycle through attendance states in the following order:
 
 No attendance (default, unmarked)
-Full Present (7 classes) - Green
+Full Present (8 classes) - Green
 Forenoon Present (4 classes) - Orange
 Afternoon Present (3 classes) - Blue
 Absent (0 classes) - Red
@@ -73,8 +73,7 @@ Exported data is stored in JSON format with the following structure:
     "2024-01-16": "forenoon-present",
     "2024-01-17": "absent"
   },
-  "exportDate": "2024-01-17T10:30:00.000Z",
-  "version": "1.0"
+  
 }
 File Structure
 Attendance Calculator/
