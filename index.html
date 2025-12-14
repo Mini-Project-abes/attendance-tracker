@@ -12,11 +12,25 @@
     <div class="container">
       <header>
         <div class="header-top">
-          <h1><i class="icon icon-calendar-check"></i> Attendance Tracker</h1>
-          <div class="profile-chip" id="profileChip">
-            <i class="icon icon-user"></i>
-            <span id="userName">Student Name</span>
-            <i class="icon icon-edit"></i>
+          <div>
+            <h1><i class="icon icon-calendar-check"></i> Attendance Tracker</h1>
+            <p class="subtitle">Track your daily attendance and stay above your target.</p>
+          </div>
+
+          <div class="header-right">
+            <div class="subject-select">
+              <select id="subjectDropdown">
+                <option value="overall">All Subjects</option>
+              </select>
+            </div>
+            <button id="manageSubjectsBtn" class="manage-subjects-btn">
+              <i class="icon icon-plus"></i> Manage Subjects
+            </button>
+            <div class="profile-chip" id="profileChip">
+              <i class="icon icon-user"></i>
+              <span id="userName">Student Name</span>
+              <i class="icon icon-edit"></i>
+            </div>
           </div>
         </div>
       </header>
@@ -26,18 +40,18 @@
           <div class="stats">
             <div class="stats-column">
               <div class="stat-item">
-                <span class="stat-label">Total Days:</span>
-                <span id="totalDays">0</span>
+                <span class="stat-label">Total Days (Classes):</span>
+                <span id="totalDays">0 (0)</span>
               </div>
               <div class="stat-item present-days-stat">
-                <span class="stat-label">Present Days:</span>
-                <span id="presentDays">0</span>
+                <span class="stat-label">Present Days (Classes):</span>
+                <span id="presentDays">0 (0)</span>
               </div>
             </div>
             <div class="stats-column">
               <div class="stat-item absent-days-stat">
-                <span class="stat-label">Absent Days:</span>
-                <span id="absentDays">0</span>
+                <span class="stat-label">Absent Days (Classes):</span>
+                <span id="absentDays">0 (0)</span>
               </div>
               <div class="stat-item attendance-percentage-stat">
                 <span class="stat-label">Attendance %:</span>
@@ -49,11 +63,11 @@
 
         <div class="info-section center-section">
           <div class="month-navigation">
-            <button id="prevMonth" class="nav-btn">
+            <button id="prevMonth" class="nav-btn" aria-label="Previous month">
               <i class="icon icon-chevron-left"></i>
             </button>
             <h2 id="currentMonth">January - June 2024</h2>
-            <button id="nextMonth" class="nav-btn">
+            <button id="nextMonth" class="nav-btn" aria-label="Next month">
               <i class="icon icon-chevron-right"></i>
             </button>
           </div>
@@ -65,11 +79,11 @@
             </div>
             <div class="legend-item">
               <div class="legend-color forenoon-present"></div>
-              <span>Forenoon (5)</span>
+              <span>Forenoon (4)</span>
             </div>
             <div class="legend-item">
               <div class="legend-color afternoon-present"></div>
-              <span>Afternoon (3)</span>
+              <span>Afternoon (4)</span>
             </div>
             <div class="legend-item">
               <div class="legend-color full-present"></div>
@@ -79,9 +93,27 @@
 
           <div class="instructions">
             <p>
-              <i class="icon icon-info-circle"></i> Click on any date to cycle
-              through attendance states. Your data is automatically saved
-              locally.
+              <i class="icon icon-info-circle"></i>
+              Click on any date to cycle through attendance states. Your data is saved locally.
+            </p>
+          </div>
+
+          <!-- Target attendance widget -->
+          <div class="target-attendance">
+            <div class="target-header">
+              <span>Target Attendance</span>
+              <span id="targetValue">75%</span>
+            </div>
+            <input
+              type="range"
+              id="targetSlider"
+              min="50"
+              max="100"
+              value="75"
+              step="1"
+            />
+            <p class="target-hint">
+              You need <span id="classesNeeded">0</span> more full days to reach your target.
             </p>
           </div>
         </div>
@@ -111,15 +143,36 @@
       </div>
 
       <div class="six-months-container">
+        <!-- Summary chips -->
+        <div class="summary-chips">
+          <div class="chip chip-safe">
+            Safe Days Left
+            <span id="safeDays">0</span>
+          </div>
+          <div class="chip chip-risk">
+            At Risk From
+            <span id="riskDate">–</span>
+          </div>
+          <div class="chip chip-streak">
+            Current Streak
+            <span id="streakDays">0 days</span>
+          </div>
+        </div>
+
+        <!-- Empty state -->
+        <div id="emptyState" class="empty-state">
+          Start by clicking a date to mark your attendance.
+        </div>
+
         <div id="sixMonthsGrid" class="six-months-grid"></div>
       </div>
 
       <!-- Settings Modal -->
-      <div id="settingsModal" class="modal">
+      <div id="settingsModal" class="modal" aria-hidden="true">
         <div class="modal-content">
           <div class="modal-header">
             <h3><i class="icon icon-cog"></i> Settings</h3>
-            <button id="closeSettings" class="close-btn">
+            <button id="closeSettings" class="close-btn" aria-label="Close settings">
               <i class="icon icon-times"></i>
             </button>
           </div>
@@ -216,8 +269,58 @@
           </div>
         </div>
       </div>
+
+      <!-- Clear data modal -->
+      <div id="clearModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3><i class="icon icon-trash"></i> Clear Data</h3>
+            <button id="closeClear" class="close-btn" aria-label="Close clear dialog">
+              <i class="icon icon-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>What would you like to clear?</p>
+            <div class="clear-actions">
+              <button id="clearRangeBtn" class="control-btn">
+                <i class="icon icon-calendar-minus"></i> Current 6 months
+              </button>
+              <button id="clearAllBtn" class="control-btn danger">
+                <i class="icon icon-trash"></i> All data
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manage Subjects Modal -->
+      <div id="subjectsModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3><i class="icon icon-book"></i> Manage Subjects</h3>
+            <button id="closeSubjects" class="close-btn" aria-label="Close subjects">
+              <i class="icon icon-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="add-subject-form">
+              <input 
+                type="text" 
+                id="newSubjectName" 
+                placeholder="Enter subject name" 
+                class="subject-input"
+              />
+              <button id="addSubjectBtn" class="control-btn">
+                <i class="icon icon-plus"></i> Add Subject
+              </button>
+            </div>
+            <div id="subjectsList" class="subjects-list"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
   </body>
 </html>
+
